@@ -1,0 +1,52 @@
+databaseChangeLog:
+  - changeSet:
+      id: MSA-2 add liquibase migration
+      author: Vladislav S.
+      changes:
+        - createTable:
+            tableName: film
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(200)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: varchar(1000)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: type
+                  type: varchar(25)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: genre
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: release_date
+                  type: date
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: MSA-2 add liquibase migration - add population
+      author: Vladislav S.
+      changes:
+        - sqlFile:
+            path: sql/populate.sql
+            splitStatements: false
+            relativeToChangelogFile: true
+      rollback:
+        - sql:
+            splitStatements: false

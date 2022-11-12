@@ -1,7 +1,7 @@
 package com.movie.storage.model;
 
-public enum TypeFilm {
+public enum FilmType {
     FULL_LENGTH,
-    TV_SERIAL,
+    TV_SERIES,
     SHORT
 }
