@@ -1,4 +1,9 @@
 spring:
+  jackson:
+    default-property-inclusion: non_null
+    deserialization:
+      READ_ENUMS_USING_TO_STRING: true
+      FAIL_ON_UNKNOWN_PROPERTIES: true
   datasource:
     url: jdbc:h2:mem:film
     username: msa
