@@ -1,9 +1,17 @@
 package com.movie.storage.model;
 
+import com.movie.storage.mapper.Default;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -35,16 +43,14 @@ public class Film {
     @Column(name = "release_date")
     private LocalDate releaseDate;
 
-    private Film(String name, String description, FilmType type, Genre genre, LocalDate releaseDate) {
+    @Default
+    public Film(Long id, String name, String description, FilmType type, Genre genre, LocalDate releaseDate) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.type = type;
         this.genre = genre;
         this.releaseDate = releaseDate;
-    }
-
-    public static Film of(String name, String description, FilmType type, Genre genre, LocalDate releaseDate) {
-        return new Film(name, description, type, genre, releaseDate);
     }
 
     @Override
