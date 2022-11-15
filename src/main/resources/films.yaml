@@ -114,10 +114,10 @@ paths:
           description: Nothing was found with provided film type
         default:
           description: Unexpected error
-  /movie-api/film/search/date/{incomeDate}:
+  /movie-api/film/search/date/{releaseDate}:
     get:
       summary: Returns films by film income date
-      operationId: getFilmByIncomeDateGET
+      operationId: getFilmByReleaseDateGET
       tags:
         - Search Films
       parameters:
@@ -239,7 +239,7 @@ components:
       schema:
         $ref: '#/components/schemas/FilmType'
     FilmRequestByDate:
-      name: incomeDate
+      name: releaseDate
       in: path
       required: true
       schema:
