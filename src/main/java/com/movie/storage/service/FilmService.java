@@ -12,9 +12,9 @@ public interface FilmService {
 
     List<Film> createMultipleFilms(List<Film> films);
 
-    List<Film> getByNameFilm(String nameFilm);
+    List<Film> getByName(String nameFilm);
 
     List<Film> getByFilmType(FilmType filmType);
 
-    List<Film> getByReleaseDateFilm(LocalDate releaseDate);
+    List<Film> getByReleaseDate(LocalDate releaseDate);
 }

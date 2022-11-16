@@ -69,4 +69,13 @@ public class Film {
     public int hashCode() {
         return Objects.hash(name, description, type, genre, releaseDate);
     }
+
+    @Override
+    public String toString() {
+        return "Film{" +
+                "id=" + id +
+                ",name='" + name + "'," +
+                "releaseDate=" + releaseDate +
+                '}';
+    }
 }
