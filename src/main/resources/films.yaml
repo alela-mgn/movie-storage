@@ -1,0 +1,260 @@
+openapi: "3.0.3"
+info:
+  title: Film storage
+  description: Simple service for film storage
+  version: '1.0'
+paths:
+  /movie-api/film/single:
+    post:
+      summary: Creates a new Film
+      operationId: createFilmPOST
+      tags:
+        - Create Films
+      requestBody:
+        required: true
+        description: Create request for Film
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FilmCreateRequest'
+      responses:
+        '200':
+          description: Returns successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FilmBulkResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/ErrorResponse'
+        default:
+          description: Unexpected error
+  /movie-api/film/multiple:
+    post:
+      summary: Creates Films
+      operationId: createBulkFilmPOST
+      tags:
+        - Create Film
+      requestBody:
+        required: true
+        description: Request for multiple Film creation
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MultipleFilmCreateRequest'
+      responses:
+        '200':
+          description: Returns successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FilmBulkResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/ErrorResponse'
+        default:
+          description: Unexpected error
+  /movie-api/film/search/name/{filmName}:
+    get:
+      summary: Returns films by name
+      operationId: getFilmByNameGET
+      tags:
+        - Search Films
+      parameters:
+        - $ref: '#/components/parameters/FilmRequestByName'
+      responses:
+        '200':
+          description: Returns successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FilmBulkResponse'
+        '400':
+          description: Provided film name is invalid
+        '404':
+          description: Nothing was found with provided film name
+        default:
+          description: Unexpected error
+  /movie-api/film/search/type/{filmType}:
+    get:
+      summary: Returns films by film type
+      operationId: getFilmByTypeGET
+      tags:
+        - Search Films
+      parameters:
+        - $ref: '#/components/parameters/FilmRequestByType'
+      responses:
+        '200':
+          description: Returns successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FilmBulkResponse'
+        '400':
+          description: Provided film type is invalid
+        '404':
+          description: Nothing was found with provided film type
+        default:
+          description: Unexpected error
+  /movie-api/film/search/date/{releaseDate}:
+    get:
+      summary: Returns films by film income date
+      operationId: getFilmByReleaseDateGET
+      tags:
+        - Search Films
+      parameters:
+        - $ref: '#/components/parameters/FilmRequestByDate'
+      responses:
+        '200':
+          description: Returns successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FilmBulkResponse'
+        '400':
+          description: Provided income date is invalid
+        '404':
+          description: Nothing was found with provided income date
+        default:
+          description: Unexpected error
+
+components:
+  # Schema Descriptions
+  schemas:
+    FilmBulkResponse:
+      type: object
+      properties:
+        films:
+          type: array
+          items:
+            $ref: '#/components/schemas/FilmResponse'
+    FilmResponse:
+      allOf:
+        - type: object
+          properties:
+            id:
+              type: integer
+              format: int64
+              example: 7
+        - $ref: '#/components/schemas/Film'
+    FilmCreateRequest:
+      allOf:
+        - $ref: '#/components/schemas/Film'
+    Film:
+      type: object
+      required:
+        - name
+        - description
+        - type
+        - genre
+        - releaseDate
+      properties:
+        name:
+          description: Film name
+          type: string
+          example: Дэдпул
+        description:
+          description: Review on film from previous viewer
+          type: string
+          example: Уэйд Уилсон - наёмник. Будучи обочным продуктом программы вооружённых сил под названием Оружие Х
+        type:
+          $ref: '#/components/schemas/FilmType'
+        genre:
+          $ref: '#/components/schemas/Genre'
+        releaseDate:
+          description: |
+            Movie release date.
+            Date is expressed in ISO 8601 format: YYYY-MM-DD.
+            Example: 2019-03-24
+          type: string
+          format: date
+    MultipleFilmCreateRequest:
+      type: object
+      properties:
+        films:
+          type: array
+          items:
+            $ref: '#/components/schemas/FilmCreateRequest'
+    Genre:
+      description: Film genre
+      type: string
+      enum:
+        - action
+        - adventure
+        - comedy
+        - drama
+        - horror
+        - fantasy
+        - thriller
+    FilmType:
+      description: Film type
+      type: string
+      enum:
+        - full_length
+        - tv_series
+        - short
+    ErrorResponse:
+      properties:
+        code:
+          type: integer
+          description: error code
+          example: 25
+        message:
+          type: string
+          description: error message
+          example: Movies were not found in the storage
+
+  # Parameters Descriptions
+  parameters:
+    FilmRequestByName:
+      name: filmName
+      in: path
+      required: true
+      schema:
+        description: Film name
+        type: string
+        example: Форсаж
+    FilmRequestByType:
+      name: filmType
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/FilmType'
+    FilmRequestByDate:
+      name: releaseDate
+      in: path
+      required: true
+      schema:
+        description: |
+          Movie release date.
+          Date is expressed in ISO 8601 format: YYYY-MM-DD.
+          Example: 2019-03-24
+        type: string
+        format: date
+
+  # Response Descriptions
+  responses:
+    ErrorResponse:
+      description: An error occurred
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
