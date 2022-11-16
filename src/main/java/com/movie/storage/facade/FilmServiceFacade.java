@@ -38,7 +38,7 @@ public class FilmServiceFacade {
     }
 
     public List<Film> getByName(String name) {
-        return service.getByNameFilm(name);
+        return service.getByName(name);
     }
 
     public List<Film> getByType(FilmType filmType) {
@@ -46,7 +46,7 @@ public class FilmServiceFacade {
     }
 
     public List<Film> getByReleaseDate(LocalDate releaseDate) {
-        return service.getByReleaseDateFilm(releaseDate);
+        return service.getByReleaseDate(releaseDate);
     }
 
 }
