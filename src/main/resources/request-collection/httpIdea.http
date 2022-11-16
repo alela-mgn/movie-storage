@@ -1,0 +1,46 @@
+### Create single film request
+POST http://localhost:8080/movie-api/film/single/
+Content-Type: application/json
+
+{
+  "name": "Дэдпул",
+  "description": "Уэйд Уилсон - наёмник. Будучи обочным продуктом программы вооружённых сил под названием Оружие Х",
+  "type": "full_length",
+  "genre": "action",
+  "releaseDate": "2022-11-14"
+}
+
+### Create multiple films request
+POST http://localhost:8080/movie-api/film/multiple/
+Content-Type: application/json
+
+{
+  "films": [
+    {
+      "name": "Дэдпул",
+      "description": "Уэйд Уилсон - наёмник. Будучи обочным продуктом программы вооружённых сил под названием Оружие Х",
+      "type": "full_length",
+      "genre": "action",
+      "releaseDate": "2022-11-12"
+    },
+    {
+      "name": "Астрал3",
+      "description": "История о том, как одаренный экстрасенс Элис Рейнер неохотно соглашается использовать свои способности для установления связи с мертвыми",
+      "type": "full_length",
+      "genre": "horror",
+      "releaseDate": "2015-06-04"
+    }
+  ]
+}
+
+### Get film by name
+GET http://localhost:8080/movie-api/film/search/name/Форсаж
+
+### Get film by type
+GET http://localhost:8080/movie-api/film/search/type/FULL_LENGTH
+
+### Get film by date
+GET http://localhost:8080/movie-api/film/search/date/2012-05-03
+
+### Get status application
+GET http://localhost:8080/actuator/health

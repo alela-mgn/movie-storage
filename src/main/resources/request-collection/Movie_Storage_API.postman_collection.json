@@ -1,0 +1,162 @@
+{
+	"info": {
+		"_postman_id": "e3e46871-2c3a-4a44-8203-0d4e8fc5e5e3",
+		"name": "Movie_Storage_API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CREATE single movie",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Terminator\",\r\n    \"description\": \"Солдат сопротивления из будущего прибывает, чтобы защитить будущего спасителя человечества от восставших машин\",\r\n    \"genre\": \"action\",\r\n    \"type\": \"full_length\",\r\n    \"releaseDate\": \"1989-05-12\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/movie-api/film/single",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movie-api",
+						"film",
+						"single"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CREATE multiple movies",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"films\": [\r\n        {\r\n            \"name\": \"Terminator\",\r\n            \"description\": \"Солдат сопротивления из будущего прибывает, чтобы защитить будущего спасителя человечества от восставших машин\",\r\n            \"genre\": \"action\",\r\n            \"type\": \"full_length\",\r\n            \"releaseDate\": \"1989-05-12\"\r\n        },\r\n        {\r\n            \"name\": \"Ведьмак\",\r\n            \"description\": \"Он несет справедливость в мире, где фантастические создания и люди живу бок о бок\",\r\n            \"genre\": \"fantasy\",\r\n            \"type\": \"tv_series\",\r\n            \"releaseDate\": \"2022-12-12\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/movie-api/film",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movie-api",
+						"film"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET movie by Name",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"dfd\",\r\n    \"description\": \"desc\",\r\n    \"genre\": \"action\",\r\n    \"type\": \"short\",\r\n    \"releaseDate\": \"2022-12-12\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/movie-api/film/name/{Форсаж}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movie-api",
+						"film",
+						"name",
+						"{Форсаж}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET movie by Film Type",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"dfd\",\r\n    \"description\": \"desc\",\r\n    \"genre\": \"action\",\r\n    \"type\": \"short\",\r\n    \"releaseDate\": \"2022-12-12\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/movie-api/film/type/{FULL_LENGTH}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movie-api",
+						"film",
+						"type",
+						"{FULL_LENGTH}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET movie by Relase Date",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"dfd\",\r\n    \"description\": \"desc\",\r\n    \"genre\": \"action\",\r\n    \"type\": \"short\",\r\n    \"releaseDate\": \"2022-12-12\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/movie-api/film/search/date/{2012-05-03}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movie-api",
+						"film",
+						"search",
+						"date",
+						"{2012-05-03}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
