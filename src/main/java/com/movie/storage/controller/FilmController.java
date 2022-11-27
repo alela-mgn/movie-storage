@@ -8,7 +8,6 @@ import com.movie.storage.app.model.MultipleFilmCreateRequest;
 import com.movie.storage.facade.FilmServiceFacade;
 import com.movie.storage.model.Film;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
@@ -26,7 +25,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/movie-api/film")
 @RequiredArgsConstructor
-@Slf4j
 public class FilmController {
     private static final int DEFAULT_PAGE_SIZE = 5;
 
@@ -34,55 +32,30 @@ public class FilmController {
 
     @PostMapping("/single")
     public FilmResponse create(@RequestBody FilmCreateRequest request) {
-        log.info("Create single film. Create request ={}", request);
-
-        FilmResponse result = serviceFacade.createSingleMovie(request);
-
-        log.info("Create single film. Finished successfully");
-        return result;
+        return serviceFacade.createSingleMovie(request);
     }
 
     @PostMapping("/multiple")
     public FilmBulkResponse createFilms(@RequestBody MultipleFilmCreateRequest request) {
-        log.info("Create multiple films. Create request ={}", request);
-
-        FilmBulkResponse result = serviceFacade.createMultipleMovie(request);
-
-        log.info("Create multiple films. Finished successfully");
-        return result;
+        return serviceFacade.createMultipleMovie(request);
     }
 
     @GetMapping("/search/name/{filmName}")
     public List<Film> getByNameFilm(@PathVariable String filmName,
                                     @PageableDefault(size = DEFAULT_PAGE_SIZE, sort = {"id"}, direction = Sort.Direction.ASC) Pageable pageable) {
-        log.info("Get film by name ={}", filmName);
-
-        List<Film> result = serviceFacade.getByName(filmName, pageable);
-
-        log.info("Get film successfully = {}", result);
-        return result;
+        return serviceFacade.getByName(filmName, pageable);
     }
 
     @GetMapping("/search/type/{filmType}")
     public List<Film> getByTypeFilm(@PathVariable FilmType filmType,
                                     @PageableDefault(size = DEFAULT_PAGE_SIZE, sort = {"id"}, direction = Sort.Direction.ASC) Pageable pageable) {
-        log.info("Get film by type ={}", filmType);
-
-        List<Film> result = serviceFacade.getByType(filmType, pageable);
-
-        log.info("Get film successfully = {}", result);
-        return result;
+        return serviceFacade.getByType(filmType, pageable);
     }
 
     @GetMapping("/search/date/{releaseDate}")
     public List<Film> getByDateFilm(@PathVariable
                                     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate releaseDate,
                                     @PageableDefault(size = DEFAULT_PAGE_SIZE, sort = {"id"}, direction = Sort.Direction.ASC) Pageable pageable) {
-        log.info("Get film by date ={}", releaseDate);
-
-        List<Film> result = serviceFacade.getByReleaseDate(releaseDate, pageable);
-
-        log.info("Get film successfully = {}", result);
-        return result;
+        return serviceFacade.getByReleaseDate(releaseDate, pageable);
     }
 }
