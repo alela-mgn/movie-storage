@@ -9,6 +9,7 @@ import com.movie.storage.mapper.FilmMapper;
 import com.movie.storage.model.Film;
 import com.movie.storage.service.FilmService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -37,16 +38,16 @@ public class FilmServiceFacade {
         return new FilmBulkResponse().films(responses);
     }
 
-    public List<Film> getByName(String name) {
-        return service.getByName(name);
+    public List<Film> getByName(String name, Pageable pageable) {
+        return service.getByName(name, pageable);
     }
 
-    public List<Film> getByType(FilmType filmType) {
-        return service.getByFilmType(mapper.toFilmTypeFromRestModel(filmType));
+    public List<Film> getByType(FilmType filmType, Pageable pageable) {
+        return service.getByFilmType(mapper.toFilmTypeFromRestModel(filmType), pageable);
     }
 
-    public List<Film> getByReleaseDate(LocalDate releaseDate) {
-        return service.getByReleaseDate(releaseDate);
+    public List<Film> getByReleaseDate(LocalDate releaseDate, Pageable pageable) {
+        return service.getByReleaseDate(releaseDate, pageable);
     }
 
 }

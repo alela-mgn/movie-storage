@@ -1,6 +1,7 @@
 package com.movie.storage.model;
 
 import com.movie.storage.mapper.Default;
+import com.movie.storage.service.validation.ValidDate;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -12,6 +13,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -26,20 +30,27 @@ public class Film {
     @Column(name = "id")
     private Long id;
 
+    @NotBlank(message = "Invalid input: mandatory field name is empty")
+    @Size(max = 200, message = "Invalid input: Name field length should be in range from 1 to {max} characters")
     @Column(nullable = false, length = 200, name = "name")
     private String name;
 
+    @NotBlank(message = "Invalid input: mandatory field description is empty")
+    @Size(max = 1000, message = "Invalid input: Description field length should be in range from 1 to {max} characters")
     @Column(nullable = false, length = 1000, name = "description")
     private String description;
 
+    @NotNull(message = "Invalid input: mandatory field Type is empty")
     @Column(nullable = false, name = "type")
     @Enumerated(EnumType.STRING)
     private FilmType type;
 
+    @NotNull(message = "Invalid input: mandatory field Genre is empty")
     @Column(nullable = false, name = "genre")
     @Enumerated(EnumType.STRING)
     private Genre genre;
 
+    @ValidDate
     @Column(name = "release_date")
     private LocalDate releaseDate;
 
