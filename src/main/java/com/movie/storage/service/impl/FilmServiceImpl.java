@@ -8,27 +8,26 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 
 import java.time.LocalDate;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Validated
 public class FilmServiceImpl implements FilmService {
     private final FilmRepository filmRepository;
-    private final FilmValidator filmValidator;
 
     @Transactional
     @Override
     public Film createFilm(Film film) {
-        filmValidator.validate(film);
         return filmRepository.save(film);
     }
 
     @Transactional
     @Override
     public List<Film> createMultipleFilms(List<Film> films) {
-        films.forEach(filmValidator::validate);
         return filmRepository.saveAll(films);
     }
 

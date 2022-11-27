@@ -4,14 +4,15 @@ import com.movie.storage.model.Film;
 import com.movie.storage.model.FilmType;
 import org.springframework.data.domain.Pageable;
 
+import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.List;
 
 public interface FilmService {
 
-    Film createFilm(Film film);
+    Film createFilm(@Valid Film film);
 
-    List<Film> createMultipleFilms(List<Film> films);
+    List<Film> createMultipleFilms(@Valid List<Film> films);
 
     List<Film> getByName(String nameFilm, Pageable pageable);
 
