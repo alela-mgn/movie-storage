@@ -1,8 +1,9 @@
 {
 	"info": {
-		"_postman_id": "e3e46871-2c3a-4a44-8203-0d4e8fc5e5e3",
+		"_postman_id": "9187dba3-6945-48ea-a7b7-6463728c8c13",
 		"name": "Movie_Storage_API",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24382546"
 	},
 	"item": [
 		{
@@ -66,8 +67,11 @@
 		},
 		{
 			"name": "GET movie by Name",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
-				"method": "POST",
+				"method": "GET",
 				"header": [],
 				"body": {
 					"mode": "raw",
@@ -79,7 +83,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/movie-api/film/name/{Форсаж}",
+					"raw": "http://localhost:8080/movie-api/film/name/Форсаж",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -89,7 +93,7 @@
 						"movie-api",
 						"film",
 						"name",
-						"{Форсаж}"
+						"Форсаж"
 					]
 				}
 			},
@@ -97,8 +101,11 @@
 		},
 		{
 			"name": "GET movie by Film Type",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
-				"method": "POST",
+				"method": "GET",
 				"header": [],
 				"body": {
 					"mode": "raw",
@@ -110,7 +117,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/movie-api/film/type/{FULL_LENGTH}",
+					"raw": "http://localhost:8080/movie-api/film/search/type/FULL_LENGTH",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -119,8 +126,9 @@
 					"path": [
 						"movie-api",
 						"film",
+						"search",
 						"type",
-						"{FULL_LENGTH}"
+						"FULL_LENGTH"
 					]
 				}
 			},
@@ -128,8 +136,11 @@
 		},
 		{
 			"name": "GET movie by Relase Date",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
-				"method": "POST",
+				"method": "GET",
 				"header": [],
 				"body": {
 					"mode": "raw",
@@ -141,7 +152,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/movie-api/film/search/date/{2012-05-03}",
+					"raw": "http://localhost:8080/movie-api/film/search/date/2012-05-03",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -152,7 +163,114 @@
 						"film",
 						"search",
 						"date",
-						"{2012-05-03}"
+						"2012-05-03"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get film by name pagination",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/movie-api/film/search/name/Форсаж?page=0",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movie-api",
+						"film",
+						"search",
+						"name",
+						"Форсаж"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get film by type pagination",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/movie-api/film/search/type/FULL_LENGTH?page=0",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movie-api",
+						"film",
+						"search",
+						"type",
+						"FULL_LENGTH"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get film by date pagination",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/movie-api/film/search/date/2016-02-11?page=0",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movie-api",
+						"film",
+						"search",
+						"date",
+						"2016-02-11"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get status application",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/actuator/health",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"actuator",
+						"health"
 					]
 				}
 			},

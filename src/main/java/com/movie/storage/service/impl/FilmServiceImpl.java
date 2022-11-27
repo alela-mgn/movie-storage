@@ -6,6 +6,7 @@ import com.movie.storage.repository.FilmRepository;
 import com.movie.storage.service.FilmService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -48,8 +49,8 @@ public class FilmServiceImpl implements FilmService {
 
     @Transactional(readOnly = true)
     @Override
-    public List<Film> getByName(String name) {
-        List<Film> films = filmRepository.findByName(name);
+    public List<Film> getByName(String name, Pageable pageable) {
+        List<Film> films = filmRepository.findByName(name, pageable);
 
         log.info("{} films were found by name={}", films.size(), name);
         return films;
@@ -57,8 +58,8 @@ public class FilmServiceImpl implements FilmService {
 
     @Transactional(readOnly = true)
     @Override
-    public List<Film> getByFilmType(FilmType filmType) {
-        List<Film> films = filmRepository.findByType(filmType);
+    public List<Film> getByFilmType(FilmType filmType, Pageable pageable) {
+        List<Film> films = filmRepository.findByType(filmType, pageable);
 
         log.info("{} films were found by film type={}", films.size(), filmType);
         return films;
@@ -66,8 +67,8 @@ public class FilmServiceImpl implements FilmService {
 
     @Transactional(readOnly = true)
     @Override
-    public List<Film> getByReleaseDate(LocalDate releaseDate) {
-        List<Film> films = filmRepository.findByReleaseDate(releaseDate);
+    public List<Film> getByReleaseDate(LocalDate releaseDate, Pageable pageable) {
+        List<Film> films = filmRepository.findByReleaseDate(releaseDate, pageable);
 
         log.info("{} films were found by release date={}", films.size(), releaseDate);
         return films;

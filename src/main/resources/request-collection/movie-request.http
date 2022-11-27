@@ -42,5 +42,14 @@ GET http://localhost:8080/movie-api/film/search/type/FULL_LENGTH
 ### Get film by date
 GET http://localhost:8080/movie-api/film/search/date/2012-05-03
 
+### Get film by name pagination
+GET http://localhost:8080/movie-api/film/search/name/Форсаж?page=0
+
+### Get film by type pagination
+GET http://localhost:8080/movie-api/film/search/type/FULL_LENGTH?page=0
+
+### Get film by date pagination
+GET http://localhost:8080/movie-api/film/search/date/2016-02-11?page=0
+
 ### Get status application
 GET http://localhost:8080/actuator/health
