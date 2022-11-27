@@ -57,6 +57,27 @@ GET /movie-api/film/search/date/{releaseDate}
 ```
 Получить фильм по дате можно по следующей ссылке:
 http://localhost:8080/movie-api/film/search/date/2012-05-03
+
+Endpoint:
+```
+GET /movie-api/film/search/name/{filmName}?page=0
+```
+Получить фильм по имени для постраничного отображения можно по следующей ссылке:
+http://localhost:8080/movie-api/film/search/name/Форсаж?page=0
+
+Endpoint:
+```
+GET /movie-api/film/search/type/{filmType}?page=0
+```
+Получить фильм по типу для постраничного отображения можно по следующей ссылке:
+http://localhost:8080/movie-api/film/search/type/FULL_LENGTH?page=0
+
+Endpoint:
+```
+GET /movie-api/film/search/date/{releaseDate}?page=0
+```
+Получить фильм по дате для постраничного отображения можно по следующей ссылке:
+http://localhost:8080/movie-api/film/search/date/2016-02-11?page=0
 ***
 Documentation Swagger-UI
 ---
